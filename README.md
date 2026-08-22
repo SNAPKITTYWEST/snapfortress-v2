@@ -1,64 +1,130 @@
 # SnapFortress v2
 
-**Sovereign Career Infrastructure. No abstraction tax.**
+[![MIT License](https://img.shields.io/badge/license-MIT-7c5cfc?style=flat-square)](LICENSE)
+[![GitHub Pages](https://img.shields.io/badge/site-live-4ade80?style=flat-square)](https://snapkittywest.github.io/snapfortress-v2/)
+[![SNAPKITTYWEST](https://img.shields.io/badge/by-SNAPKITTYWEST-a78bfa?style=flat-square)](https://github.com/SNAPKITTYWEST)
+[![Status](https://img.shields.io/badge/status-building-38bdf8?style=flat-square)](#)
 
-> You built it. You proved it. You shouldn't have to prove it again.
+> **You built it. You proved it. You shouldn't have to prove it again.**
 
-## Overview
+Your career, compiled once. Verified forever. Presented anywhere — phone, browser, terminal, API. No gatekeepers. No abstraction tax.
 
-SnapFortress v2 is a deterministic, cryptographically-audited career compilation pipeline. It compiles raw career documents into a verified Abstract Syntax Tree and projects them into context-adapted quantum personas — provably grounded in your real experience.
+---
 
-**The abstraction tax**: Every time you apply for a job, navigate a gatekeeping system, or prove yourself to a new institution — that's the tax. Time, energy, dignity, paid over and over for the same verified truth. SnapFortress ends it.
+## Try it right now
 
-## Components
+**In your browser** — no install needed:
 
-### 1. Career Compiler (`career-compiler/`)
+```js
+import { SnapFortress } from 'https://cdn.jsdelivr.net/npm/snapfortress-v2/dist/sdk.js'
 
-Ingests raw career documents → deterministic OCT token stream → verified Resume AST → WORM-audited Bifrost log.
+const sf = new SnapFortress()
+await sf.load('your-resume.pdf')
 
-```bash
-career-cli build \
-  --input resume.pdf \
-  --target ReentryResume \
-  --output verified.pdf
+const persona = await sf.persona('technical-interview')
+console.log(persona.present('Tell me about yourself'))
 ```
 
-**Stack:** Rust (OCT ingestion, Bifrost, CLI) · Haskell (AST compiler, exhaustive validation) · Prolog (routing protocol, meta-evaluation) · Lisp (fabrication engine)
+**On your phone** — paste this into any browser console:
 
-### 2. Persona Engine (`persona-engine/`)
-
-Compiles verified AST into quantum superposition of context-adapted personas. Each persona is a deterministic projection — every utterance traces to a verified AST node. Entropy ceiling: 0.20 nats.
-
-```bash
-career-cli persona superposition \
-  --ast ast.json \
-  --contexts TechnicalInterview:SystemsArchitecture:Senior \
-             BehavioralInterview:Amazon \
-             SalaryNegotiation:StaffEngineer \
-  --output superposition.json
+```js
+const { SnapFortress } = await import('https://snapkittywest.github.io/snapfortress-v2/sdk.js')
+const sf = new SnapFortress()
+sf.quickStart()
 ```
 
-### 3. TwinMesh (`twinmesh/`)
+**npm:**
 
-A sovereign digital twin that co-evolves through subtle daily interaction — not forced interviews. Peer twins form a self-healing mesh network. Trust-weighted knowledge exchange. Full operator sovereignty.
+```bash
+npm install snapfortress-v2
+```
 
-## Integrity Properties
+**CDN:**
 
-| Property | Guarantee |
+```html
+<script type="module" src="https://snapkittywest.github.io/snapfortress-v2/sdk.js"></script>
+```
+
+---
+
+## What it does in plain terms
+
+You upload your resume once. SnapFortress reads it, verifies every skill and job you've listed, and builds a locked, cryptographically-signed version of your career. Then it can speak *as you* — adapting to whatever situation you're in — without ever making up a single thing.
+
+Going into a technical interview? It surfaces your engineering work.  
+Negotiating salary? It pulls your metrics and impact numbers.  
+Coming back from a gap, reentry, time away? It finds every transferable skill and leads with those.
+
+Every word it says traces back to something you actually did. No hallucination. No exaggeration. Just you — verified.
+
+---
+
+## SDK quick reference
+
+```js
+import { SnapFortress } from 'snapfortress-v2'
+
+const sf = new SnapFortress()
+
+// Load your career documents
+await sf.load('resume.pdf')              // PDF
+await sf.load('resume.docx')             // Word
+await sf.load({ text: '...' })           // plain text
+await sf.load({ linkedin: 'your-url' }) // LinkedIn URL
+
+// Build a persona for your situation
+const persona = await sf.persona('technical-interview')
+const persona = await sf.persona('behavioral-interview')
+const persona = await sf.persona('salary-negotiation')
+const persona = await sf.persona('reentry-resume')
+
+// Use it
+persona.present('Tell me about a time you led a team')
+persona.present('Why should we hire you?')
+persona.present('What are your strengths?')
+
+// Get a verified resume for a specific target
+const resume = await sf.compile('reentry-resume')
+resume.download()           // save as PDF
+resume.json()               // raw verified data
+resume.auditChain()         // cryptographic proof
+
+// TwinMesh — your daily co-pilot
+const twin = await sf.twin()
+twin.morningBriefing()      // what to focus on today
+twin.breakDown('prep for interview at Stripe')
+twin.sync()                 // exchange insights with peer network
+```
+
+---
+
+## Three components
+
+### Career Compiler
+Reads your documents and builds a verified data structure of your career. Every skill, every job, every metric — tagged as proved or unproved. Nothing unverified goes downstream.
+
+### Persona Engine
+Takes that verified data and builds context-adapted versions of you. Technical interview. Salary negotiation. Reentry resume. Each one only says things that are actually true about you.
+
+### TwinMesh
+A digital twin that learns from your daily interactions — not forced interviews. Connects with peer twins to share knowledge. Gives you a morning briefing, helps you prep, reflects with you at day's end.
+
+---
+
+## Integrity
+
+| | |
 |---|---|
-| Zero ML drift | OCT ingestion is deterministic rule-based classification |
-| Cryptographic proof | Blake3-hashed, Ed25519-signed, WORM-appended |
-| No hallucination | Every template slot resolves only to verified AST data |
-| Local first | Air-gap capable, no cloud dependency for core compilation |
-| Operator sovereignty | Skill amplitudes operator-adjustable; sharing policy configurable |
+| Zero ML drift | Rule-based parsing only — no neural network randomness |
+| Cryptographic proof | Blake3 + Ed25519 — every claim signed and chained |
+| No hallucination | Hard constraint: every word traces to your actual documents |
+| Works offline | Core pipeline runs local — no cloud required |
+| You own it | Full sovereignty — you control what gets shared and with whom |
 
-## Audit Chain
-
-```bash
-career-cli verify-audit
-career-cli export-audit --output audit_chain.jsonl
-```
+---
 
 ## Built by
 
-[SNAPKITTYWEST](https://github.com/SNAPKITTYWEST) — Sovereign stack. Public interest tech.
+[SNAPKITTYWEST](https://github.com/SNAPKITTYWEST) — sovereign stack, public interest tech.
+
+[Live site](https://snapkittywest.github.io/snapfortress-v2/) · [License](LICENSE) · [Career Compiler](career-compiler/) · [Persona Engine](persona-engine/) · [TwinMesh](twinmesh/)
